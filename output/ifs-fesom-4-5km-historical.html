@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFS-FESOM 4.5km historical</title>
+
+    <!-- Bulma CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .sidebar {
+            border-right: 1px solid #ddd;
+            height: calc(100vh - 3.25rem); /* subtract navbar height */
+            overflow-y: auto;
+        }
+        .content-area {
+            padding: 2rem;
+            height: calc(100vh - 3.25rem);
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item has-text-weight-semibold">
+            Simulation Overview
+        </a>
+    </div>
+</nav>
+
+<div class="columns is-gapless" style="height: calc(100vh - 3.25rem);">
+
+    <div class="column is-one-quarter sidebar p-4 ml-5">
+        <aside class="menu">
+            <p class="menu-label mt-5">Simulations</p>
+            <ul class="menu-list">
+                
+                <li>
+                    <a href="ifs-fesom-4-5km-historical.html">
+                        IFS-FESOM 4.5km historical
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="ifs-fesom-4-5km-projection.html">
+                        IFS-FESOM 4.5km projection
+                    </a>
+                </li>
+                
+            </ul>
+        </aside>
+    </div>
+
+    <!-- Main Content -->
+    <div class="column content-area">
+        <section class="section">
+    <h1 class="title">IFS-FESOM 4.5km historical</h1>
+
+<div class="content">
+    <p class="buttons">
+      <a class="button" href="https://climatedt-internal-dashboard.2.rahtiapp.fi/aqua" target="_blank" rel="noopener">
+        <span class="icon">
+          <i class="fas fa-gauge"></i>
+        </span>
+        <span>Dashboard</span>
+      </a>
+      <a class="button" href="https://jira.eduuni.fi/browse/CSCDESTINCLIMADT-905" target="_blank" rel="noopener">
+        <span class="icon">
+          <i class="fab fa-jira"></i>
+        </span>
+        <span>Jira</span>
+      </a>
+      <a class="button" href="https://climatedt-wf.csc.fi/experiment/o010/quick" target="_blank" rel="noopener">
+        <span class="icon">
+          <i class="fas fa-wind"></i>
+        </span>
+        <span>Autosubmit GUI</span>
+      </a>
+    </p>
+
+    <p class="subtitle">IFS-FESOM 4.5km historical run. Main Production run.
+</p>
+
+    <div class="box">
+        <h2 class="title is-4">Info</h2>
+
+        <h3 class="title is-5">Scientific setup</h2>
+            <ul>
+                <li><strong>Resolution (Atmosphere):</strong> <span class="tag is-dark is-small is-family-code"> tco2559 </span></li>
+                <li><strong>Resolution (Ocean):</strong> <span class="tag is-dark is-small is-family-code">ng5 </span></li>
+                <li><strong>RAPS flags:</strong> <span class="tag is-dark is-small is-family-code">--wam-grib-version=1 --no-wam-output --fixyear 1990 --cbmf_reduced --no-ozone --drhook --hugepages --runoff-mapper --sicoupl=thermodynamical </span></li>
+                <li><strong>Start Date:</strong> <span class="tag is-dark is-small is-family-code">19900101 </span></li>
+                <li><strong>End Date:</strong> <span class="tag is-dark is-small is-family-code">20500101 </span></li>
+            </ul>
+        <h3 class="title is-5">Computational setup</h2>
+            <ul>
+                <li><strong>HPC:</strong> lumi</li>
+                <li><strong>Autosubmit ID:</strong> <span class="tag is-dark is-small is-family-code">o010 </span></li>
+                <li><strong>Nodes:</strong> 279</li>
+                <li class="mb-2"> <strong>Run directory:</strong>
+                 <span id="rundir-ifs-fesom-4-5km-historical" class="tag is-dark is-small is-family-code">
+                 /scratch/project_465001542/kiszlert/o010/
+                 </span>
+    <span class="tag is-link is-light is-small ml-2" style="cursor: pointer;" onclick="copyPath('rundir-ifs-fesom-4-5km-historical', this)">Copy </span>
+                </li>
+                <li class="mb-2"> <strong>FDB path:</strong>
+                 <span id="fdb-path-ifs-fesom-4-5km-historical" class="tag is-dark is-small is-family-code">
+                 /appl/local/destine/fdb
+                 </span>
+    <span class="tag is-link is-light is-small ml-2" style="cursor: pointer;" onclick="copyPath('rundir-ifs-fesom-4-5km-historical', this)">Copy </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="box">
+        <h2 class="title is-4">Data retrieval</h2>
+         <ul>
+           <li><strong>Data Portfolio:</strong> full </li>
+         </ul>
+
+    <div class="tabs is-toggle is-toggle-rounded mb-3">
+        <ul>
+            <li class="is-active" data-tab="mars-ifs-fesom-4-5km-historical">
+                <a>Mars</a>
+            </li>
+            <li data-tab="polytope-ifs-fesom-4-5km-historical">
+                <a>Polytope</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-panels">
+        <pre class="panel is-active" id="mars-ifs-fesom-4-5km-historical"><code>retrieve,
+  expver=1,
+  class=d1,
+  dataset=climate-dt,
+  activity=baseline,
+  experiment=hist,
+  generation=2,
+  model=IFS-FESOM,
+  type=fc,
+  realization=1,
+  resolution=standard,
+  stream=clte,
+  levtype=sfc,
+  param=167,
+  date=20200101,
+  time=0/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23,</code></pre>
+        <pre class="panel" id="polytope-ifs-fesom-4-5km-historical"><code>request = { 
+  'expver': '1',
+  'class': 'd1',
+  'dataset': 'climate-dt',
+  'activity': 'baseline',
+  'experiment': 'hist',
+  'generation': '2',
+  'model': 'IFS-FESOM',
+  'type': 'fc',
+  'realization': '1',
+  'resolution': 'standard',
+  'stream': 'clte',
+  'levtype': 'sfc',
+  'param': '167',
+  'date': '20200101',
+  'time': '0/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23',</code></pre>
+    </div>
+        <article class="message is-info">
+          <div class="message-header">
+            <p>Info</p>
+          </div>
+          <div class="message-body">
+            You need to adjust the <span class="tag is-dark is-small is-family-code">variable</span>, <span class="tag is-dark is-small is-family-code">leveltype</span>, <span class="tag is-dark is-small is-family-code">date</span> and <span class="tag is-dark is-small is-family-code">time</span> 
+          </div>
+        </article>
+
+</div>
+
+    <div class="box">
+        <h2 class="title is-4">Component Versions</h2>
+         <ul>
+                
+                <li>
+                <strong>ifs-bundle:</strong> <span class="tag is-dark is-small is-family-code"> DE_CY48 </span></li>
+                </li>
+                
+                <li>
+                <strong>workflow:</strong> <span class="tag is-dark is-small is-family-code"> v5.0.10 </span></li>
+                </li>
+                
+                <li>
+                <strong>autosubmit:</strong> <span class="tag is-dark is-small is-family-code"> 4.1.14 </span></li>
+                </li>
+                
+                <li>
+                <strong>AQUA:</strong> <span class="tag is-dark is-small is-family-code"> 0.13.0 </span></li>
+                </li>
+                
+                <li>
+                <strong>data-portfolio-tag:</strong> <span class="tag is-dark is-small is-family-code"> 1.3 </span></li>
+                </li>
+                
+         </ul>
+    </div>
+
+</section>
+
+    </div>
+
+</div>
+
+</body>
+<script>
+function copyPath(elementId, tagElement) {
+    const text = document.getElementById(elementId).textContent;
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            // Change tag style to success
+            tagElement.classList.remove("is-link", "is-light");
+            tagElement.classList.add("is-success");
+
+            // Temporarily show “Copied!”
+            const originalText = tagElement.textContent;
+            tagElement.textContent = "Copied!";
+
+            // Revert after 1.2 seconds
+            setTimeout(() => {
+                tagElement.classList.add("is-link", "is-light");
+                tagElement.classList.remove("is-success");
+                tagElement.textContent = originalText;
+            }, 1200);
+        })
+        .catch(err => {
+            console.error("Failed to copy:", err);
+        });
+}
+</script>
+
+<script>
+// super lightweight tabs
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll(".tabs ul li").forEach(tab => {
+        tab.addEventListener("click", () => {
+
+            const tabId = tab.getAttribute("data-tab");
+
+            // deactivate all tabs in this group
+            const group = tab.closest(".box");
+            group.querySelectorAll(".tabs ul li").forEach(li =>
+                li.classList.remove("is-active")
+            );
+            group.querySelectorAll(".panel").forEach(panel =>
+                panel.classList.remove("is-active")
+            );
+
+            // activate this tab and its panel
+            tab.classList.add("is-active");
+            group.querySelector("#" + tabId).classList.add("is-active");
+        });
+    });
+
+});
+</script>
+    <script src="https://kit.fontawesome.com/26ff20f1b6.js" crossorigin="anonymous"></script>
+
+<style>
+.panel { display: none; }
+.panel.is-active { display: block; }
+</style>
+
+
+</html>
+

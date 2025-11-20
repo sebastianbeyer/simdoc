@@ -1,0 +1,103 @@
+<section class="section">
+    <h1 class="title">{{ sim.title }}</h1>
+
+<div class="content">
+    <p class="buttons">
+      <a class="button" href="{{ sim['dashboard-link'] }}" target="_blank" rel="noopener">
+        <span class="icon">
+          <i class="fas fa-gauge"></i>
+        </span>
+        <span>Dashboard</span>
+      </a>
+      <a class="button" href="{{ sim['jira'] }}" target="_blank" rel="noopener">
+        <span class="icon">
+          <i class="fab fa-jira"></i>
+        </span>
+        <span>Jira</span>
+      </a>
+      <a class="button" href="https://climatedt-wf.csc.fi/experiment/{{ sim['as-expid'] }}/quick" target="_blank" rel="noopener">
+        <span class="icon">
+          <i class="fas fa-wind"></i>
+        </span>
+        <span>Autosubmit GUI</span>
+      </a>
+    </p>
+
+    <p class="subtitle">{{ sim.description }}</p>
+
+    <div class="box">
+        <h2 class="title is-4">Info</h2>
+
+        <h3 class="title is-5">Scientific setup</h2>
+            <ul>
+                <li><strong>Resolution (Atmosphere):</strong> <span class="tag is-dark is-small is-family-code"> {{ sim['resolution-atm'] }} </span></li>
+                <li><strong>Resolution (Ocean):</strong> <span class="tag is-dark is-small is-family-code">{{ sim['resolution-ocn'] }} </span></li>
+                <li><strong>RAPS flags:</strong> <span class="tag is-dark is-small is-family-code">{{ sim['raps-flags'] }} </span></li>
+                <li><strong>Start Date:</strong> <span class="tag is-dark is-small is-family-code">{{ sim['date-start'] }} </span></li>
+                <li><strong>End Date:</strong> <span class="tag is-dark is-small is-family-code">{{ sim['date-end'] }} </span></li>
+            </ul>
+        <h3 class="title is-5">Computational setup</h2>
+            <ul>
+                <li><strong>HPC:</strong> {{ sim.hpc }}</li>
+                <li><strong>Autosubmit ID:</strong> <span class="tag is-dark is-small is-family-code">{{ sim['as-expid'] }} </span></li>
+                <li><strong>Nodes:</strong> {{ sim.nodes }}</li>
+                <li class="mb-2"> <strong>Run directory:</strong>
+                 <span id="rundir-{{ sim.slug }}" class="tag is-dark is-small is-family-code">
+                 {{ sim.rundir }}
+                 </span>
+    <span class="tag is-link is-light is-small ml-2" style="cursor: pointer;" onclick="copyPath('rundir-{{ sim.slug }}', this)">Copy </span>
+                </li>
+                <li class="mb-2"> <strong>FDB path:</strong>
+                 <span id="fdb-path-{{ sim.slug }}" class="tag is-dark is-small is-family-code">
+                 {{ sim['fdb-path'] }}
+                 </span>
+    <span class="tag is-link is-light is-small ml-2" style="cursor: pointer;" onclick="copyPath('rundir-{{ sim.slug }}', this)">Copy </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="box">
+        <h2 class="title is-4">Data retrieval</h2>
+         <ul>
+           <li><strong>Data Portfolio:</strong> {{ sim['data-portfolio'] }} </li>
+         </ul>
+
+    <div class="tabs is-toggle is-toggle-rounded mb-3">
+        <ul>
+            <li class="is-active" data-tab="mars-{{ sim.slug }}">
+                <a>Mars</a>
+            </li>
+            <li data-tab="polytope-{{ sim.slug }}">
+                <a>Polytope</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-panels">
+        <pre class="panel is-active" id="mars-{{ sim.slug }}"><code>{{ sim.mars_example }}</code></pre>
+        <pre class="panel" id="polytope-{{ sim.slug }}"><code>{{ sim.polytope_example }}</code></pre>
+    </div>
+        <article class="message is-info">
+          <div class="message-header">
+            <p>Info</p>
+          </div>
+          <div class="message-body">
+            You need to adjust the <span class="tag is-dark is-small is-family-code">variable</span>, <span class="tag is-dark is-small is-family-code">leveltype</span>, <span class="tag is-dark is-small is-family-code">date</span> and <span class="tag is-dark is-small is-family-code">time</span> 
+          </div>
+        </article>
+
+</div>
+
+    <div class="box">
+        <h2 class="title is-4">Component Versions</h2>
+         <ul>
+                {% for app, version in sim.versions.items() %}
+                <li>
+                <strong>{{ app }}:</strong> <span class="tag is-dark is-small is-family-code"> {{ version }} </span></li>
+                </li>
+                {% endfor %}
+         </ul>
+    </div>
+
+</section>
+

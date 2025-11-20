@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title }}</title>
+
+    <!-- Bulma CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    >
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .sidebar {
+            border-right: 1px solid #ddd;
+            height: calc(100vh - 3.25rem); /* subtract navbar height */
+            overflow-y: auto;
+        }
+        .content-area {
+            padding: 2rem;
+            height: calc(100vh - 3.25rem);
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item has-text-weight-semibold">
+            Simulation Overview
+        </a>
+    </div>
+</nav>
+
+<div class="columns is-gapless" style="height: calc(100vh - 3.25rem);">
+
+    <div class="column is-one-quarter sidebar p-4 ml-5">
+        <aside class="menu">
+            <p class="menu-label mt-5">Simulations</p>
+            <ul class="menu-list">
+                {% for sim in simulations %}
+                <li>
+                    <a href="{{ sim['slug'] }}.html">
+                        {{ sim['title'] }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+    </div>
+
+    <!-- Main Content -->
+    <div class="column content-area">
+        {{ content | safe }}
+    </div>
+
+</div>
+
+</body>
+<script>
+function copyPath(elementId, tagElement) {
+    const text = document.getElementById(elementId).textContent;
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            // Change tag style to success
+            tagElement.classList.remove("is-link", "is-light");
+            tagElement.classList.add("is-success");
+
+            // Temporarily show “Copied!”
+            const originalText = tagElement.textContent;
+            tagElement.textContent = "Copied!";
+
+            // Revert after 1.2 seconds
+            setTimeout(() => {
+                tagElement.classList.add("is-link", "is-light");
+                tagElement.classList.remove("is-success");
+                tagElement.textContent = originalText;
+            }, 1200);
+        })
+        .catch(err => {
+            console.error("Failed to copy:", err);
+        });
+}
+</script>
+
+<script>
+// super lightweight tabs
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll(".tabs ul li").forEach(tab => {
+        tab.addEventListener("click", () => {
+
+            const tabId = tab.getAttribute("data-tab");
+
+            // deactivate all tabs in this group
+            const group = tab.closest(".box");
+            group.querySelectorAll(".tabs ul li").forEach(li =>
+                li.classList.remove("is-active")
+            );
+            group.querySelectorAll(".panel").forEach(panel =>
+                panel.classList.remove("is-active")
+            );
+
+            // activate this tab and its panel
+            tab.classList.add("is-active");
+            group.querySelector("#" + tabId).classList.add("is-active");
+        });
+    });
+
+});
+</script>
+    <script src="https://kit.fontawesome.com/26ff20f1b6.js" crossorigin="anonymous"></script>
+
+<style>
+.panel { display: none; }
+.panel.is-active { display: block; }
+</style>
+
+
+</html>
+
+
